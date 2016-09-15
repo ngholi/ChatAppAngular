@@ -5,7 +5,7 @@
 Các bước chạy ứng dụng trên localhost:
 
   - Clone repository bằng lệnh:
-      + git clone https://github.com/Minh8181-blz/MinhChatApp.git
+      + git clone https://github.com/Minh8181-blz/ChatAppAngular.git
   - Import file mychatapp.sql vào mysql server
   - Trỏ command line đến thư mục chứa repo vừa clone để download các module cần thiết bằng lệnh:
       + npm install
