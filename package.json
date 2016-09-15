@@ -16,6 +16,7 @@
     "mysql": "^2.10.2",
     "socket.io": "^1.4.5",
     "bcrypt-nodejs": "^0.0.3",
-    "atob": "^2.0.0"
+    "atob": "^2.0.0",
+    "jsonwebtoken": "^7.1.9"
   }
 }
