@@ -1,0 +1,43 @@
+<div class="modal-header">
+
+            <h3 class="modal-title">{{team.teamName}} statistics</h3>
+        </div>
+        <div class="modal-body text-center">
+            <table class="table">
+                <tr>
+                    <td><img height="30px" ng-src="{{team.crestURI}}"></td>
+                    <td><b>WINS</b></td>
+                    <td><b>DRAWS</b></td>
+                    <td><b>LOSSES</b></td>
+                    <td><b>GS</b></td>
+                    <td><b>GA</b></td>
+                </tr>
+                <tr>
+                    <td><b>HOME</b></td>
+                    <td>{{team.home.wins}}</td>
+                    <td>{{team.home.draws}}</td>
+                    <td>{{team.home.losses}}</td>
+                    <td>{{team.home.goals}}</td>
+                    <td>{{team.home.goalsAgainst}}</td>
+                </tr>
+                <tr>
+                    <td><b>AWAY</b></td>
+                    <td>{{team.away.wins}}</td>
+                    <td>{{team.away.draws}}</td>
+                    <td>{{team.away.losses}}</td>
+                    <td>{{team.away.goals}}</td>
+                    <td>{{team.away.goalsAgainst}}</td>
+                </tr>
+                <tr>
+                    <td><b>TOTAL</b></td>
+                    <td>{{team.wins}}</td>
+                    <td>{{team.draws}}</td>
+                    <td>{{team.losses}}</td>
+                    <td>{{team.goals}}</td>
+                    <td>{{team.goalsAgainst}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+</div>

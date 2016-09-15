@@ -1,0 +1,16 @@
+<div class="container">
+
+      <form class="form-signin" ng-submit="logIn()" style="margin-top:30px;">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <div class="form-group">  
+        <input type="email" class="form-control" placeholder="Email address" ng-model="user.email">
+        </div>
+        <div class="form-group">
+        <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+      <p ng-show="message" style="color:#ff0000">{{message}}</p>
+
+</div> <!-- /container -->
