@@ -1,0 +1,133 @@
+.avatar img{
+	width: 70px;
+	height: 70px;
+}
+
+.avatar {
+	float: left;
+}
+
+.user-list li{
+	overflow: auto;
+}
+
+.friend-name {
+	float: left;
+	padding-left: 10px;
+	font-weight: bold;
+	color: dodgerblue;
+	margin-top: 20px;
+}
+
+.status {
+	float: right;
+	margin-top: 20px;
+}
+
+.full-chat-box{
+	border: 1px solid black;
+	height: 90vh;
+	position: relative;
+	padding: 0;
+}
+
+.user-list-container {
+	overflow-y: scroll;
+	height: 90vh;
+}
+
+.chat-box-container {
+	height: 100%;
+}
+
+.full-screen {
+	height: 100%;
+}
+
+.message-panel{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	margin: 0;
+	height: 10vh;
+}
+
+.message-panel textarea{
+	width: 100%;
+	padding: 10px;
+	height: 10vh;
+	bottom: 0;
+}
+
+.chat-content{
+	position: absolute;
+	width: 100%;
+	overflow-y: scroll;
+	background-color: #3F9682;
+	height: 75vh;
+}
+
+.chat-box-single-line{
+	border-bottom: 1px solid #a4c6b5;
+	height: 12px;
+	margin: 7px 10px 20px;
+	position: relative;
+	text-align: center;
+}
+
+.chat-box-single-line span{
+	background-color: #3F9682;
+	color: white;
+	padding: 0 11px;
+}
+
+.left{
+	float: left;
+}
+
+.user-chat img{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 1px solid #fff;
+}
+
+.user-chat{
+	padding: 10px;
+	overflow: auto;
+	position: relative;
+}
+
+.direct-chat-text{
+	background-color: #dfece7;
+	border: 1px solid #dfece7;
+	border-radius: 2px;
+	color: black;
+	margin: 5px 10px;
+	padding: 10px;
+	max-width: 90%;
+}
+
+.right{
+	float: right;
+}
+
+.tab-chat{
+	position: relative;
+	width: 100%;
+	max-height: 5vh;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
