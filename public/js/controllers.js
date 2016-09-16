@@ -149,7 +149,7 @@ eplControllers.controller('TableCtrl',['$scope','$location','$auth','$rootScope'
 	}
 
 	$scope.send = function(){
-
+		console.log('test');
 		// UI process
 		UISendMessage();
 		
