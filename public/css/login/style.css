@@ -1,0 +1,69 @@
+body {
+    background: #47505F;
+    font-size: 2em;
+    font-family: 'Open Sans';
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-family: 'Bree Serif';
+    font-size: 45px;
+}
+
+input[type="email"], [type="password"] {
+    width: 80%;
+    height: 13%;
+    padding: 10px;
+    margin: 20px 10% 5px 10%;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+}
+
+input[type="submit"] {
+    width: 84%;
+    height: 20%;
+    margin: 20px 8%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #4EA95F;
+    color: #F1F3F7;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+input[type="submit"]:hover {
+    background: #387a44;
+}
+
+a {
+    margin: 0 auto;
+    text-decoration: none;
+    color: #A4A9B0;
+}
+
+a:hover {
+    color: #fff;
+}
+
+.login-container {
+    width: 100%;
+    margin: 25px auto;
+    background: rgba(110, 123, 145, 0.3);
+    border-radius: 5px;
+    padding-bottom: 50px;
+    position: relative;
+}
+
+.avatar {
+    height: 100px;
+    position: relative;
+    margin-top: 10%
+}
+
+form{
+    text-align: center;
+}

@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="eplApp">
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Node Chat App</title>
 
 	<link rel="stylesheet" href="css/style.css">
@@ -20,7 +21,7 @@
     
 
 	<body ng-app="eplApp" ng-controller="MainCtrl">
-		<nav class="navbar navbar-inverse navbar-collapse">
+		<nav class="navbar navbar-inverse navbar-collapse" ng-show="isAuthenticated()">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
 		      <a class="navbar-brand" href="#">My Node Chat</a>

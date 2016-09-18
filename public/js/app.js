@@ -8,7 +8,7 @@ eplApp.config(['$routeProvider','$authProvider',
 	function($routeProvider,$authProvider){
 		$routeProvider.
 			when('/login',{
-				templateUrl: 'templates/teams.html',
+				templateUrl: 'templates/login.html',
 				controller: 'AuthCtrl',
 				auth: false
 			}).
@@ -18,7 +18,7 @@ eplApp.config(['$routeProvider','$authProvider',
 				auth: false
 			}).
 			when('/home',{
-				templateUrl: 'templates/table.html',
+				templateUrl: 'templates/chat.html',
 				controller: 'TableCtrl',
 				auth: true
 			}).
