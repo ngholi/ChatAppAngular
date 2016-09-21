@@ -1,30 +1,45 @@
 var eplApp = angular.module('eplApp',[
-	'ngRoute',
+	'ngRoute', 'ui.router',
 	'eplControllers',
 	'satellizer',
 ]);
 
-eplApp.config(['$routeProvider','$authProvider',
-	function($routeProvider,$authProvider){
-		$routeProvider.
-			when('/login',{
+eplApp.config(['$routeProvider','$authProvider', '$stateProvider', '$urlRouterProvider',
+	function($routeProvider,$authProvider, $stateProvider, $urlRouterProvider){
+		$urlRouterProvider.otherwise('/home/rooms');
+		$stateProvider.
+			state('login',{
+				url: '/login',
 				templateUrl: 'templates/login.html',
 				controller: 'AuthCtrl',
 				auth: false
 			}).
-			when('/register',{
+			state('register',{
+				url: '/register',
 				templateUrl: 'templates/register.html',
 				controller: 'AuthCtrl',
 				auth: false
 			}).
-			when('/home',{
-				templateUrl: 'templates/chat.html',
-				controller: 'TableCtrl',
+			state('home',{
+				abstract: true,
+				url: '/home',
+				templateUrl: 'templates/home.html',
+				controller: 'HomeCtrl as home',
 				auth: true
 			}).
-			otherwise({
-				redirectTo: '/home'
-			});
+			state('home.rooms', {
+				url: '/rooms',
+				templateUrl: 'templates/room.html',
+				controller: 'RoomCtrl',
+				auth: true
+			}).
+			state('home.chat', {
+				url: '/chat/{roomId}',
+				templateUrl: 'templates/chat.html',
+				controller: 'ChatCtrl',
+				auth: true
+			})
+		;
 
 		$authProvider.loginUrl = '/login';
   		$authProvider.signupUrl = '/register';

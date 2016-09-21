@@ -1,0 +1,77 @@
+<div fullbleed unresolved>
+	<link rel="stylesheet" href="css/chat/style.css">
+    <!-- <link rel="import" href="x-chat-list.html"> -->
+    <core-scaffold>
+    
+      <!-- Drawer panel -->
+      <core-header-panel navigation flex>
+        <core-toolbar class="tall" style="background-image: url(images/cover.jpg); background-position: 50% 50%">
+          <!-- an avatar and username will be here -->
+          <div class="middle avatar navy" style="background-image: url(images/avatar.jpg)"></div>
+          <div class="bottom uuid">Hoang Linh</div>
+        </core-toolbar>
+        
+        <md-list-item class="md-2-line" ng-click="goState('home.rooms')">
+           <img ng-src="images/icons/message.svg" class="md-avatar" alt="" />
+          <div class="md-list-item-text">
+            <h3>Tin nhắn</h3>
+          </div>
+        </md-list-item>
+        <md-list-item class="md-2-line" ng-click="null">
+          <img ng-src="images/icons/game.svg" class="md-avatar" alt="" />
+            <div class="md-list-item-text">
+              <h3>Game</h3>
+            </div>
+        </md-list-item>
+        <md-list-item class="md-2-line" ng-click="null">
+          <img ng-src="images/avatar.jpg" class="md-avatar" alt="" />
+            <div class="md-list-item-text">
+              <h3>Utility</h3>
+            </div>
+        </md-list-item>
+        <md-list-item class="md-2-line" ng-click="null">
+          <img ng-src="images/icons/about.svg" class="md-avatar" alt="" />
+            <div class="md-list-item-text">
+              <h3>About</h3>
+            </div>
+        </md-list-item>
+        <md-list-item class="md-2-line" ng-click="logout()">
+          <img ng-src="images/icons/logout.png" class="md-avatar" alt="" />
+            <div class="md-list-item-text">
+              <h3>Log Out</h3>
+            </div>
+        </md-list-item>
+      </core-header-panel>
+    	
+      <!-- App Title -->
+      <div tool layout horizontal flex>
+        <span flex>{{title}}</span>
+        <core-icon icon="account-circle"></core-icon>
+        <span></span> 
+      </div>
+      <div ui-view style="height: 100%"></div>
+      
+      <!-- Main content -->
+      <!-- <div class="chat-container" style="height: 100%; flex-direction: column; display: flex">
+        <div flex class="chat-list" style="overflow-y: auto">
+          <div ng-repeat="message in conversation">
+              <section class="user-list" layout horizontal >
+              <div class="avatar navy" style="{{cssAvatar(message.from)}}">
+                <div class="status busy"></div>
+              </div>
+              <div flex>
+                <div class="username">{{dataCenter.users[message.from].displayName}}</div>
+                <div class="text">{{message.text}}</div>
+              </div>
+              <time class="timestamp" is="relative-time" datetime="10:30">{{message.time}}</time>
+            </section>
+          </div>
+        </div>
+        <div class="send-message" layout horizontal>
+      	  <paper-input flex label="Type message..." id="input" value="{{input}}"></paper-input>
+      	  <paper-fab icon="send" id="sendButton" on-tap="{{sendMyMessage}}"></paper-fab>
+    	  </div>
+      </div> -->
+      
+    </core-scaffold>
+  </div>

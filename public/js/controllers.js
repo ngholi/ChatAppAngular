@@ -1,4 +1,4 @@
-var eplControllers = angular.module('eplControllers',['services','satellizer','webcam', 'ngMaterial']);
+var eplControllers = angular.module('eplControllers',['services','satellizer','webcam', 'ngMaterial', 'ui.router']);
 
 eplControllers.controller('MainCtrl',['$scope','$location','$auth','$http',
 	function($scope,$location,$auth,$http){	
@@ -51,19 +51,120 @@ eplControllers.controller('AuthCtrl',['$scope','$location','$auth',
 		};
 }]);
 
-eplControllers.controller('TableCtrl',['$scope','$location','$auth','$rootScope', 'ChatUIRender',
-	function($scope,$location,$auth,$rootScope, render){
+eplControllers.controller('HomeCtrl',['$scope','$location','$auth','$rootScope', '$state',
+	function($scope,$location,$auth,$rootScope, $state){
 
 	var payload = $auth.getPayload();
 	
 	$rootScope.user = {
-		id: payload.id,
+		// id: payload.id,
+		id: 2,
 		name: payload.username,
 		email: payload.useremail,
 		avatarUrl: 'images/default-ava.png'
 	};
-	
 
+	var fakeData = {
+		//user list, users[userID] will access to user corresponding to
+		users: {
+			1: {state: 'Online', displayName: 'Hoàng Linh', avatarUrl: 'images/default-ava.png'},
+			2: {state: 'Offline', displayName: 'Cứng hơn trứng', avatarUrl: 'images/avatar.jpg'}
+		},
+		rooms: {
+			1: {
+				id: 1,
+				usersID: [1, 2],
+				displayName: 'Cứng hơn trứng',
+				coverUrl: 'images/cover.jpg',
+				messages: [
+					{from: 1, text: 'Hello', time: 0},
+					{from: 2, text: 'Hi', time: 2}
+				]
+			},
+		}
+	};
+
+	$scope.dataCenter = fakeData;
+	
+	$scope.cssAvatar = function(userID){
+		return 'background-image: url(' + $scope.dataCenter.users[userID].avatarUrl + ');';
+	};
+	$scope.goState = function(state){
+		$state.go(state);
+	};
+	$scope.showHoursMinutes = function(timeInMillis){
+		var d = new Date(timeInMillis);
+		return print2Number(d.getHours()) + ':' + print2Number(d.getMinutes());
+	};
+
+	function print2Number(number){
+		if(number < 10)
+			return '0' + number;
+		return number;
+	}
+}]);
+
+eplControllers.controller('RoomCtrl', ['$scope', '$rootScope', '$state', function($scope, $rootScope, $state){
+	$rootScope.title = 'Tin nhắn';
+	$scope.rooms = $scope.dataCenter.rooms;
+
+	$scope.getLastMessageInRoom = function(room){
+		return room.messages[room.messages.length - 1] || false;
+	};
+	$scope.getLastUserIds = function(room, numberUser){
+		var number = numberUser || -1;
+		var arr = [];
+		if(room.usersID.length === 2){
+			if(room.usersID[0] === $rootScope.user.id)
+				arr.push(room.usersID[1]);
+			else
+				arr.push(room.usersID[0]);
+			return arr;
+		}
+		if(room){
+			var x = room.messages;
+			for(var i = x.length-1; i>=0; i--){
+				if(arr.indexOf(x[i].from) < 0){
+					arr.push(x[i].from);
+					if(arr.length === number) return arr;
+				}
+			}
+		}
+		console.log(arr);
+		return arr;
+	};
+	$scope.getLastUsers = function(room, numberUser){
+		var userIds = $scope.getLastUserIds(room, numberUser);
+		var arr = [];
+		var x;
+		for(x in userIds){
+			arr.push($scope.dataCenter.users[userIds[x]]);
+		}
+		return arr;
+	};
+	$scope.goRoom = function(roomId){
+		$state.go('home.chat', {roomId: roomId});
+	}
+}]);
+
+eplControllers.controller('ChatCtrl', ['$rootScope', '$scope', '$stateParams', function($rootScope, $scope, $stateParams){
+	var roomId = $stateParams.roomId;
+	var room = $scope.dataCenter.rooms[roomId];
+	$rootScope.title = room.displayName;
+	$scope.conversation = room.messages;
+
+	document.getElementById('my-message').onkeydown = function(e){
+		if(e.keyCode == 13 && e.shiftKey == false){
+			$scope.$apply($scope.send());
+		}
+	};
+
+	$scope.send = function(){
+		console.log($scope.mess);
+		if(!$scope.mess) return;
+		room.messages.push({from: $rootScope.user.id, text: $scope.mess, time: Date.now()});
+		$scope.mess = '';
+	};
 }]);
 
 
