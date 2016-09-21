@@ -1,59 +1,90 @@
-<div class="container-fluid">
-	<link rel="stylesheet" type="text/css" href="css/chat/style.css">
-	<div class="row full-screen">
-		<!-- Friend list container -->
-		<div class="col-md-3 user-list-container">
-			<ul class="list-group user-list" style="list-style-type: none">
-				<li ng-repeat="friend in friendList" class="list-group-item">
-					<span class="avatar">
-						<img src="images/default-ava.png" class="img-thumbnail">
-					</span>
-					<h5 class="friend-name">{{friend.name}}</h5>
-					<span class="label label-success status">Online</span>
-				</li>
-			</ul>
-		</div>
+<div fullbleed unresolved>
+	<link rel="stylesheet" href="css/chat/style.css">
+    <!-- <link rel="import" href="x-chat-list.html"> -->
+    <core-scaffold>
+    
+      <!-- Drawer panel -->
+      <core-header-panel navigation flex>
+        <core-toolbar class="tall" style="background-image: url(images/cover.jpg); background-position: 50% 50%">
+          <!-- an avatar and username will be here -->
+          <div class="middle avatar navy" style="background-image: url(images/avatar.jpg)"></div>
+          <div class="bottom uuid">Hoang Linh</div>
+        </core-toolbar>
+        
+        <md-list-item class="md-2-line" ng-click="null">
+          <img ng-src="images/avatar.jpg" class="md-avatar" alt="" />
+            <div class="md-list-item-text">
+              <h3>Personal</h3>
+            </div>
+        </md-list-item>
+        <md-list-item class="md-2-line" ng-click="null">
+          <img ng-src="images/avatar.jpg" class="md-avatar" alt="" />
+            <div class="md-list-item-text">
+              <h3>Game</h3>
+            </div>
+        </md-list-item>
+        <md-list-item class="md-2-line" ng-click="null">
+          <img ng-src="images/avatar.jpg" class="md-avatar" alt="" />
+            <div class="md-list-item-text">
+              <h3>Utility</h3>
+            </div>
+        </md-list-item>
+        <md-list-item class="md-2-line" ng-click="null">
+          <img ng-src="images/avatar.jpg" class="md-avatar" alt="" />
+            <div class="md-list-item-text">
+              <h3>About</h3>
+            </div>
+        </md-list-item>
+        <md-list-item class="md-2-line" ng-click="logout()">
+          <img ng-src="images/avatar.jpg" class="md-avatar" alt="" />
+            <div class="md-list-item-text">
+              <h3>Log Out</h3>
+            </div>
+        </md-list-item>
+      </core-header-panel>
+    	
+      <!-- App Title -->
+      <div tool layout horizontal flex>
+      	<span flex>Kitteh Anonymous</span>
+      	<core-icon icon="account-circle"></core-icon>
+      	<span><!-- number of people online --></span> 
+      </div>
+      
+      <!-- Main content -->
+      <div class="chat-container" style="height: 100%; flex-direction: column; display: flex">
+      <div flex class="chat-list" style="overflow-y: auto">
+        <div>
+            <section class="user-list" layout horizontal >
+            <div class="avatar navy" style="background-image: url(images/avatar.jpg)">
+              <div class="status busy"></div>
+            </div>
+            <div flex>
+              <div class="username">Linh</div>
+              <div class="text">Hello</div>
+            </div>
+            <time class="timestamp" is="relative-time" datetime="10:30">10:30</time>
+          </section>
+        </div>
+        <div>
+            <section class="user-list" layout horizontal>
+            <div class="avatar navy" style="background-image: url(images/avatar.jpg)">
+              <div class="status busy"></div>
+            </div>
+            <div flex>
+              <div class="username">Linh</div>
+              <div class="text">Congrats, you just finished writing a simple Polymer chat app with Material Design!
 
-		<!-- Chat box -->
-		<div class="col-md-8 chat-box-container">
-			<div class="full-chat-box">
-				<div class="tab-chat">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#">Linh</a></li>
-					  <li><a href="#">ABCXYZ</a></li>
-					</ul>
-				</div>
-				<!-- Chat content will be shown here -->
-				<div class="chat-content" id="chat-box">
-
-					<!-- Single line -->
-					<div class="chat-box-single-line">
-						<span class="timestamp">16/09/2016</span>
-					</div>
-
-					<!-- Left chat -->
-					<div class="left-chat user-chat">
-						<img src="images/default-ava.png" class="img-rounded left"/>
-						<div class="messages left">
-							<div class="direct-chat-text">Hello</div>
-							<div class="direct-chat-text">Hello</div>
-						</div>
-					</div>
-
-					<!-- Right chat -->
-					<div class="right-chat user-chat">
-						<img src="images/default-ava.png" class="img-rounded right"/>
-						<div class="messages right">
-							<div class="direct-chat-text" data-toggle="tooltip" title="test">Hello</div>
-							<div class="direct-chat-text">Hello</div>
-						</div>
-					</div>			
-				</div>
-				<!-- Chat panel -->
-				<div class="message-panel">
-						<textarea placeholder="Type a message..." type="text" ng-model="myMessage" class="form-control input-md"></textarea>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+I didn’t cover all other features shown in the full demo (PubNub Storage & Playback API to display older chat messages, online status with the Presence API, CSS styling Shadow DOM, etc.), however, you can always peek the source code in the GitHub repo!</div>
+            </div>
+            <time class="timestamp" is="relative-time" datetime="10:30">10:30</time>
+          </section>
+        </div>
+      </div>
+      <div class="send-message" layout horizontal>
+    	  <paper-input flex label="Type message..." id="input" value="{{input}}"></paper-input>
+    	  <paper-fab icon="send" id="sendButton" on-tap="{{sendMyMessage}}"></paper-fab>
+  	  </div>
+      </div>
+      
+    </core-scaffold>
+  </div>

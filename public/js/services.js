@@ -5,7 +5,14 @@ services.factory('ChatUIRender', function(){
 		if(number<10)
 			return '0' + number;
 		return number;
-	}
+	};
+
+	var encodeStr = function(str){
+		var encode = str.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+		   return '&#'+i.charCodeAt(0)+';';
+		});
+		return encode.replace(/\n/g, '<br/>');
+	};
 	return {
 		messageInWithContainer: function(data){
 			return '<div class="left-chat user-chat"><img src="'+ 

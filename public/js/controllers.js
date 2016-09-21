@@ -1,4 +1,4 @@
-var eplControllers = angular.module('eplControllers',['ui.bootstrap','services','satellizer','webcam']);
+var eplControllers = angular.module('eplControllers',['services','satellizer','webcam', 'ngMaterial']);
 
 eplControllers.controller('MainCtrl',['$scope','$location','$auth','$http',
 	function($scope,$location,$auth,$http){	
@@ -55,106 +55,14 @@ eplControllers.controller('TableCtrl',['$scope','$location','$auth','$rootScope'
 	function($scope,$location,$auth,$rootScope, render){
 
 	var payload = $auth.getPayload();
-	var chatBox = document.getElementById('chat-box');
-	document.getElementsByTagName('textarea')[0].onkeydown = function(e){
-		if(e.keyCode == 13){
-			if(e.shiftKey !== true){
-				$scope.$apply($scope.send());
-				e.preventDefault();
-			}
-		}
-	};
+	
 	$rootScope.user = {
 		id: payload.id,
 		name: payload.username,
-		email: payload.useremail
+		email: payload.useremail,
+		avatarUrl: 'images/default-ava.png'
 	};
-	$scope.friendList = [
-		{name: 'Linh'},
-		{name: 'Minh'},
-		{name: 'Dat'},
-		{name: 'Linh'},
-		{name: 'Minh'},
-		{name: 'Dat'},
-		{name: 'Linh'},
-		{name: 'Minh'},
-		{name: 'Dat'},
-		{name: 'Linh'},
-		{name: 'Minh'},
-		{name: 'Dat'},
-		{name: 'Linh'},
-		{name: 'Minh'},
-		{name: 'Dat'},
-		{name: 'Linh'},
-		{name: 'Minh'},
-		{name: 'Dat'},
-	];
-
-	// -----Chat box UI-----
-
-	//This function updates UI only, not handle with network
-	var UISendMessage = function(){
-		//Check message is empty
-		if(!$scope.myMessage) return;
-
-		if(shouldDrawSingleLine()){
-			//Draw line and append chat text
-			chatBox.innerHTML += render.singleLine();
-			let template = render.messageOutWithContainer({avatarUrl: 'images/default-ava.png', text: $scope.myMessage, time: Date.now()});
-			chatBox.innerHTML += template;
-		}
-		else{
-			let lastContainer = previousMessIsMine();
-			if(!lastContainer){
-				//previous message it not mine, create new container
-				let template = render.messageOutWithContainer({avatarUrl: 'images/default-ava.png', text: $scope.myMessage, time: Date.now()});
-				chatBox.innerHTML += template;
-			}
-			else{
-				//previous message is mine, append my message into container
-				lastContainer.getElementsByClassName('messages')[0].innerHTML += render.messageOut({text: $scope.myMessage, time: Date.now()});
-			}	
-		}
-		
-		
-		//Clear textarea and scroll down chat-box to bottom
-		$scope.myMessage = '';
-		chatBox.scrollTop = chatBox.scrollHeight;
-	}
-
-	//-----Support function-----
-
-	//This function check last mess, if it is not mine, return false. If it is mine, return last element
-	var previousMessIsMine = function(){
-		//get last message container
-		var  x = chatBox.getElementsByClassName('user-chat');
-		var last = x[x.length - 1];
-
-		//check this container. If it's mine, return true
-		if(last.className.indexOf('right-chat') >= 0){
-			return last;
-		}
-		return false;
-	}
-
-	//Return true if now() and last message time are so far (defaultTime is 5 minutes)
-	var shouldDrawSingleLine = function(){
-		console.log('aaa');
-		var defaultTime = 5*60*1000;
-		var x = chatBox.getElementsByClassName('direct-chat-text');
-		var last = x[x.length - 1];
-
-		last = parseInt(last.getAttribute('time')) || 0;
-		return Date.now() - last > defaultTime;
-	}
-
-	$scope.send = function(){
-		console.log('test');
-		// UI process
-		UISendMessage();
-		
-		return false;
-	};
+	
 
 }]);
 
