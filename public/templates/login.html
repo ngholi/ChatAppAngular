@@ -14,22 +14,28 @@
       <p ng-show="message" style="color:#ff0000">{{message}}</p>
 
 </div> --> <!-- /container -->
-
-<div class="container-fluid">
-    <link rel="stylesheet" type="text/css" href="css/login/style.css">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <h1>Đăng nhập</h1><br>
-        <div class="login-container">
-            <center><img src="images/default-ava.png" alt="login icon" class="img-rounded avatar"> </center>
-            <form ng-submit="logIn()">
-                <input class="email-area" type="email" placeholder="Email address" ng-model="user.email">
-              
-                <input type="password" placeholder="Password" ng-model="user.password">
-              
-                <input type="submit" value="Đăng nhập" class="btn-login">
-                <a href="#">Quên mật khẩu?</a> 
-            </form>
-        </div>
+<link rel="stylesheet" type="text/css" href="css/login/style.css">
+<div class="wrapper">
+    <div class="container">
+        <h1>Welcome</h1>
+        
+        <form class="form" ng-submit="logIn()">
+            <input type="text" placeholder="Email" ng-model="user.email">
+            <input type="password" placeholder="Password" ng-model="user.password">
+            <button type="submit" id="login-button">Login</button>
+        </form>
     </div>
+    
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
 </div>
