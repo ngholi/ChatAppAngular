@@ -1,5 +1,6 @@
 var services = angular.module('services',['ngResource']);
 
+
 services.factory('ChatUIRender', function(){
 	var print2number = function(number){
 		if(number<10)

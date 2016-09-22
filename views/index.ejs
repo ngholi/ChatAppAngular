@@ -5,8 +5,8 @@
 	<title>Node Chat App</title>
 
 	<link rel="stylesheet" href="css/style.css">
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
+	<!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">-->
+	<link href="bootstrap/bootstrap-3.3.7/dist/css/bootstrap.css" rel="stylesheet">
 	<script src="modules/angular.js"></script>
 	<script src="modules/angular-route.js"></script>
 	<script src="modules/angular-resource.js"></script>
@@ -30,6 +30,7 @@
 		      <li ng-hide="isAuthenticated()"><a href="#/login">LOGIN</a></li>
 		      <li><a href="#/register">REGISTER</a></li>
 		      <li><a href="#/home">HOME</a></li>
+				<li><a href="#/rooms">ROOMS</a></li>
 		      <li ng-show="isAuthenticated()">
                 	<div>
 			        	<form class="navbar-form" role="search">
@@ -44,6 +45,7 @@
                 </li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right" ng-show="isAuthenticated()">
+		    	<li><a href="#/home">{{user.username}}</a></li>
                 <li><a ng-click="logout()" href="#/login" class="glyphicon glyphicon-log-out"></a></li> 
             </ul>
 		  </div>

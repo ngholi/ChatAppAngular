@@ -22,6 +22,11 @@ eplApp.config(['$routeProvider','$authProvider',
 				controller: 'TableCtrl',
 				auth: true
 			}).
+			when('/rooms',{
+				templateUrl: 'templates/rooms.html',
+				controller: 'RoomCtrl',
+				auth: true
+			}).
 			otherwise({
 				redirectTo: '/home'
 			});

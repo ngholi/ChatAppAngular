@@ -1,6 +1,6 @@
 module.exports = {
 
-    'secret': '$2a$10$PVf4xVaYFgBDPsKRYnIbse',
-    'jwt_key': 'illusoryblaze'
+    'SECRET': '$2a$10$PVf4xVaYFgBDPsKRYnIbse',
+    'JWT_KEY': 'illusoryblaze'
 
 };
