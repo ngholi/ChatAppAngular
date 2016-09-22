@@ -8,7 +8,7 @@
         <core-toolbar class="tall" style="background-image: url(images/cover.jpg); background-position: 50% 50%">
           <!-- an avatar and username will be here -->
           <div class="middle avatar navy" style="background-image: url(images/avatar.jpg)"></div>
-          <div class="bottom uuid">Hoang Linh</div>
+          <div class="bottom uuid">{{$rootScope.user.username}}</div>
         </core-toolbar>
         
         <md-list-item class="md-2-line" ng-click="goState('home.rooms')">
