@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var userQueries = require('../models/userQueries');
-var jwtService = require('../services/jwtService');
+var userQueries = require('../query-service/user-queries');
+var jwtService = require('../jwt-service/jwt-service');
 var bcrypt = require('bcrypt-nodejs');
 var config = require('../config');
-var secret = config.secret;
+var SECRET = config.SECRET;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -20,7 +20,7 @@ router.post('/register', function(req, res, next){
 	var user = {
 		'name': req.body.username,
 		'email':req.body.email,
-		'password':bcrypt.hashSync(req.body.password, secret)
+		'password':bcrypt.hashSync(req.body.password, SECRET)
 	};
 	
 	userQueries.insertUser(user,
@@ -39,7 +39,7 @@ router.post('/login', function(req, res, next){
 	}
 	var user = {
 		'email' : req.body.email,
-		'password': bcrypt.hashSync(req.body.password, secret)
+		'password': bcrypt.hashSync(req.body.password, SECRET)
 	}
 
 
@@ -52,22 +52,5 @@ router.post('/login', function(req, res, next){
 	})
 });
 
-router.get('/users', function(req, res, next){
-	console.log(req.headers);
-	var user = {};
-	jwtService.getPayload(req.headers.authorization, function(result){
-		if(result){
-			user = result;
-
-			userQueries.getAll(user.id,function(rows){
-				return res.status(200).json({users: rows});
-			})
-		}else{
-			return res.status(401).json({message: 'Unauthorized'});
-		}
-	});
-
-	
-});
 
 module.exports = router;
